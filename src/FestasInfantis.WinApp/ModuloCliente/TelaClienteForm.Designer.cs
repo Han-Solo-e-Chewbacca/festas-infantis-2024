@@ -149,6 +149,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "TelaClienteForm";
+            ShowIcon = false;
             Text = "Cadastro de Cliente";
             Load += TelaClienteForm_Load;
             ResumeLayout(false);
