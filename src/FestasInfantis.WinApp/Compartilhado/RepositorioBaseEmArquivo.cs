@@ -19,9 +19,10 @@ namespace FestasInfantis.WinApp.Compartilhado
 
         public RepositorioBaseEmArquivo(string nomeArquivo)
         {
-            caminho = $"C:\\temp\\eAgenda\\{nomeArquivo}";
+            caminho = $"C:\\temp\\FestasInfantis\\{nomeArquivo}";
 
             registros = DeserializarRegistros();
+            if(registros.Count > 0 ) { contadorId=registros.Max(r => r.Id)+1; }
         }
 
         public void Cadastrar(T novoRegistro)

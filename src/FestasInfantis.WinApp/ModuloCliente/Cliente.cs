@@ -15,11 +15,11 @@ namespace FestasInfantis.WinApp.ModuloCliente
         public string Cpf { get; set; }
        
 
-        public Cliente(string nome, string telefone, string cpf)
+        public Cliente(string nome,  string cpf,string telefone)
         {
             Nome = nome;
-            Telefone = telefone;
             Cpf = cpf;
+            Telefone = telefone;         
         }
 
         public override List<string> Validar()
@@ -42,9 +42,10 @@ namespace FestasInfantis.WinApp.ModuloCliente
         {
             Cliente atualizado = (Cliente)novoRegistro;
 
-            Nome = atualizado.Nome;           
-            Telefone = atualizado.Telefone;         
+            Nome = atualizado.Nome;
             Cpf = atualizado.Cpf;
+            Telefone = atualizado.Telefone;         
+           
         }
 
         public override string ToString()

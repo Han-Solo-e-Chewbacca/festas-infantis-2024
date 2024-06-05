@@ -9,9 +9,9 @@ namespace FestasInfantis.WinApp.ModuloCliente
 {
     public class RepositorioClienteEmArquivo : RepositorioBaseEmArquivo<Cliente>, IRepositorioCliente
     {
-        public RepositorioClienteEmArquivo() : base("contatos.json")
+        public RepositorioClienteEmArquivo() : base("clientes.json")
         {
         }
     }
 }
-}
+

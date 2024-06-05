@@ -74,30 +74,32 @@
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(109, 29);
             cadastrosToolStripMenuItem.Text = "Cadastros";
+            cadastrosToolStripMenuItem.Click += cadastrosToolStripMenuItem_Click;
             // 
             // clientesMenuItem
             // 
             clientesMenuItem.Name = "clientesMenuItem";
-            clientesMenuItem.Size = new Size(224, 30);
+            clientesMenuItem.Size = new Size(171, 30);
             clientesMenuItem.Text = "Clientes";
+            clientesMenuItem.Click += clientesMenuItem_Click;
             // 
             // temasMenuItem
             // 
             temasMenuItem.DropDownItems.AddRange(new ToolStripItem[] { itensToolStripMenuItem });
             temasMenuItem.Name = "temasMenuItem";
-            temasMenuItem.Size = new Size(224, 30);
+            temasMenuItem.Size = new Size(171, 30);
             temasMenuItem.Text = "Temas";
             // 
             // itensToolStripMenuItem
             // 
             itensToolStripMenuItem.Name = "itensToolStripMenuItem";
-            itensToolStripMenuItem.Size = new Size(224, 30);
+            itensToolStripMenuItem.Size = new Size(138, 30);
             itensToolStripMenuItem.Text = "Itens";
             // 
             // alugueisMenuItem
             // 
             alugueisMenuItem.Name = "alugueisMenuItem";
-            alugueisMenuItem.Size = new Size(224, 30);
+            alugueisMenuItem.Size = new Size(171, 30);
             alugueisMenuItem.Text = "Aluguéis";
             // 
             // statusStrip1
@@ -138,6 +140,7 @@
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Padding = new Padding(5);
             btnAdicionar.Size = new Size(38, 38);
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
             // btnEditar
             // 
@@ -149,6 +152,7 @@
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(5);
             btnEditar.Size = new Size(38, 38);
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
             // 
@@ -160,6 +164,7 @@
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Padding = new Padding(5);
             btnExcluir.Size = new Size(38, 38);
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // toolStripSeparator1
             // 

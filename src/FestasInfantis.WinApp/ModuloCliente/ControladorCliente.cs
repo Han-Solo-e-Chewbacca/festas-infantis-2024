@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace FestasInfantis.WinApp.ModuloCliente
 {
-    public class ControladorContato : ControladorBase
+    public class ControladorCliente : ControladorBase
     {
         private IRepositorioCliente repositorioCliente;
         private TabelaClienteControl tabelaCliente;
 
-        public ControladorContato(IRepositorioCliente repositorio)
+        public ControladorCliente(IRepositorioCliente repositorio)
         {
             repositorioCliente = repositorio;
         }
@@ -35,11 +35,11 @@ namespace FestasInfantis.WinApp.ModuloCliente
             if (resultado != DialogResult.OK)
                 return;
 
-            Cliente novoCliente = telaCliente.Contato;
+            Cliente novoCliente = telaCliente.Cliente;
 
             repositorioCliente.Cadastrar(novoCliente);
 
-            CarregarContatos();
+            CarregarClientes();
 
             TelaPrincipalForm
                 .Instancia
@@ -114,14 +114,14 @@ namespace FestasInfantis.WinApp.ModuloCliente
 
             repositorioCliente.Excluir(clienteSelecionado.Id);
 
-            CarregarContatos();
+            CarregarClientes();
 
             TelaPrincipalForm
                 .Instancia
                 .AtualizarRodape($"O registro \"{clienteSelecionado.Nome}\" foi excluído com sucesso!");
         }
 
-        private void CarregarCliente()
+        private void CarregarClientes()
         {
             List<Cliente> clientes = repositorioCliente.SelecionarTodos();
 
@@ -133,7 +133,7 @@ namespace FestasInfantis.WinApp.ModuloCliente
             if (tabelaCliente == null)
                 tabelaCliente = new TabelaClienteControl();
 
-            CarregarCliente();
+            CarregarClientes();
 
             return tabelaCliente;
         }
