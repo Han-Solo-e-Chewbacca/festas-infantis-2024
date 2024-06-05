@@ -59,5 +59,9 @@ namespace FestasInfantis.WinApp
             pnlRegistros.Controls.Add(listagemContato);
         }
 
+        private void pnlRegistros_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
