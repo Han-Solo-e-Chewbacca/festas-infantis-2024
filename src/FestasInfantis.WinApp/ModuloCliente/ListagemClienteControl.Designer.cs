@@ -28,12 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            listClientes = new ListBox();
             SuspendLayout();
+            // 
+            // listClientes
+            // 
+            listClientes.Dock = DockStyle.Fill;
+            listClientes.FormattingEnabled = true;
+            listClientes.Location = new Point(0, 0);
+            listClientes.Name = "listClientes";
+            listClientes.Size = new Size(577, 369);
+            listClientes.TabIndex = 0;
             // 
             // ListagemClienteControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(listClientes);
             Name = "ListagemClienteControl";
             Size = new Size(577, 369);
             Load += ListagemClienteControl_Load;
@@ -41,5 +52,7 @@
         }
 
         #endregion
+
+        private ListBox listClientes;
     }
 }
