@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="ModuloDeItensDoTema\" />
-    <Folder Include="ModuloDeTema\" />
     <Folder Include="ModuloDeAlugueisDeTemas\" />
   </ItemGroup>
 
