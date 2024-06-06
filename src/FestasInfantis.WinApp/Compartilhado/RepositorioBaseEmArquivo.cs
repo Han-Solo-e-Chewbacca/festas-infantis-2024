@@ -9,29 +9,26 @@ using System.Threading.Tasks;
 
 namespace FestasInfantis.WinApp.Compartilhado
 {
-    public class RepositorioBaseEmArquivo<T> where T : EntidadeBase
+    public abstract class RepositorioBaseEmArquivo<T> where T : EntidadeBase
     {
-        protected List<T> registros = new List<T>();
+        protected abstract List<T> ObterRegistros();
 
         protected int contadorId = 1;
 
-        private string caminho = string.Empty;
+        protected ContextoDados contexto = new ContextoDados();
 
-        public RepositorioBaseEmArquivo(string nomeArquivo)
+        public RepositorioBaseEmArquivo(ContextoDados contexto)
         {
-            caminho = $"C:\\temp\\FestasInfantis\\{nomeArquivo}";
-
-            registros = DeserializarRegistros();
-            if(registros.Count > 0 ) { contadorId=registros.Max(r => r.Id)+1; }
+           this.contexto = contexto;
         }
 
         public void Cadastrar(T novoRegistro)
         {
             novoRegistro.Id = contadorId++;
 
-            registros.Add(novoRegistro);
+            ObterRegistros().Add(novoRegistro);
 
-            SerializarRegistros();
+            contexto.Gravar();
         }
 
         public bool Editar(int id, T novaEntidade)
@@ -43,36 +40,36 @@ namespace FestasInfantis.WinApp.Compartilhado
 
             registro.AtualizarRegistro(novaEntidade);
 
-            SerializarRegistros();
+            contexto.Gravar();
 
             return true;
         }
 
-        public bool Excluir(int id)
+        public virtual bool Excluir(int id)
         {
-            bool conseguiuRemover = registros.Remove(SelecionarPorId(id));
+            bool conseguiuRemover = ObterRegistros().Remove(SelecionarPorId(id));
 
             if (!conseguiuRemover)
                 return false;
 
-            SerializarRegistros();
+            contexto.Gravar();
 
             return true;
         }
 
         public List<T> SelecionarTodos()
         {
-            return registros;
+            return contexto.;
         }
 
         public T SelecionarPorId(int id)
         {
-            return registros.Find(x => x.Id == id);
+            return ObterRegistros().Find(x => x.Id == id);
         }
 
         public bool Existe(int id)
         {
-            return registros.Any(x => x.Id == id);
+            return ObterRegistros().Any(x => x.Id == id);
         }
 
         public void CadastrarVarios(List<T> registrosAdicionados)
@@ -80,46 +77,46 @@ namespace FestasInfantis.WinApp.Compartilhado
             foreach (T registro in registrosAdicionados)
             {
                 registro.Id = contadorId++;
-                registros.Add(registro);
+                ObterRegistros().Add(registro);
             }
 
-            SerializarRegistros();
+            contexto.Gravar();
         }
 
-        protected void SerializarRegistros()
-        {
-            FileInfo file = new FileInfo(caminho);
+        //protected void SerializarRegistros()
+        //{
+        //    FileInfo file = new FileInfo(caminho);
 
-            file.Directory.Create();
+        //    file.Directory.Create();
 
-            JsonSerializerOptions options = new JsonSerializerOptions()
-            {
-                ReferenceHandler = ReferenceHandler.Preserve,
-                WriteIndented = true
-            };
+        //    JsonSerializerOptions options = new JsonSerializerOptions()
+        //    {
+        //        ReferenceHandler = ReferenceHandler.Preserve,
+        //        WriteIndented = true
+        //    };
 
-            byte[] registrosEmBytes = JsonSerializer.SerializeToUtf8Bytes(registros, options);
+        //    byte[] registrosEmBytes = JsonSerializer.SerializeToUtf8Bytes(registros, options);
 
-            File.WriteAllBytes(caminho, registrosEmBytes);
-        }
+        //    File.WriteAllBytes(caminho, registrosEmBytes);
+        //}
 
-        protected List<T> DeserializarRegistros()
-        {
-            FileInfo file = new FileInfo(caminho);
+        //protected List<T> DeserializarRegistros()
+        //{
+        //    FileInfo file = new FileInfo(caminho);
 
-            if (!file.Exists)
-                return new List<T>();
+        //    if (!file.Exists)
+        //        return new List<T>();
 
-            byte[] registrosEmBytes = File.ReadAllBytes(caminho);
+        //    byte[] registrosEmBytes = File.ReadAllBytes(caminho);
 
-            JsonSerializerOptions options = new JsonSerializerOptions()
-            {
-                ReferenceHandler = ReferenceHandler.Preserve
-            };
+        //    JsonSerializerOptions options = new JsonSerializerOptions()
+        //    {
+        //        ReferenceHandler = ReferenceHandler.Preserve
+        //    };
 
-            List<T> registros = JsonSerializer.Deserialize<List<T>>(registrosEmBytes, options);
+        //    List<T> registros = JsonSerializer.Deserialize<List<T>>(registrosEmBytes, options);
 
-            return registros;
-        }
+        //    return registros;
+        //}
     }
 }

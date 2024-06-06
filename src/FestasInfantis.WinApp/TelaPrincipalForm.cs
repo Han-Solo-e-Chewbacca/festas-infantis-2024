@@ -1,4 +1,5 @@
 using eAgenda.WinApp.Compartilhado;
+using FestasInfantis.WinApp.Compartilhado;
 using FestasInfantis.WinApp.ModuloCliente;
 
 namespace FestasInfantis.WinApp
@@ -6,6 +7,8 @@ namespace FestasInfantis.WinApp
     public partial class TelaPrincipalForm : Form
     {
         ControladorBase controlador;
+
+        ContextoDados contexto;
 
         IRepositorioCliente repositorioCliente;
 
@@ -15,8 +18,9 @@ namespace FestasInfantis.WinApp
         {
             InitializeComponent();
 
+            contexto=new ContextoDados(carregarDados: true);
 
-            repositorioCliente = new RepositorioClienteEmArquivo();
+            repositorioCliente = new RepositorioClienteEmArquivo(contexto);
             lblTipoCadastro.Text = string.Empty;
             Instancia = this;
         }
