@@ -16,7 +16,7 @@ namespace FestasInfantis.WinApp.Compartilhado
         public List<Tema> Temas { get; set; }
         public List<ItensDoTema> ItensDoTema { get; set; }
 
-        public List<AlugueisDoTema> AlugueisDoTemas { get; set; }
+        public List<AlugueisDeTemas> AlugueisDeTemas { get; set; }
 
         private string caminho = $"C:\\temp\\FestasInfantis\\dados.json";
 
@@ -28,7 +28,7 @@ namespace FestasInfantis.WinApp.Compartilhado
 
             ItensDoTema = new List<ItensDoTema>();
            
-            AlugueisDoTemas = new List<AlugueisDoTema>();
+            AlugueisDeTemas = new List<AlugueisDeTemas>();
         }
 
         public ContextoDados(bool carregarDados) : this()
@@ -78,7 +78,7 @@ namespace FestasInfantis.WinApp.Compartilhado
 
             ItensDoTema = ctx.ItensDoTema;
 
-            AlugueisDoTemas = ctx.AlugueisDoTemas;
+            AlugueisDeTemas = ctx.AlugueisDeTemas;
         }
     }
 }
