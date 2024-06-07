@@ -59,7 +59,7 @@ namespace FestasInfantis.WinApp.Compartilhado
 
         public List<T> SelecionarTodos()
         {
-            return contexto.;
+            return null ;
         }
 
         public T SelecionarPorId(int id)
