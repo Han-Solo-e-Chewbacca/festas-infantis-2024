@@ -1,6 +1,7 @@
 ﻿using eAgenda.ConsoleApp.Compartilhado;
-using FestasInfantis.WinApp.ModuloAluguel;
+using FestasInfantis.WinApp.ModuloDeAlugueisDeTemas;
 using FestasInfantis.WinApp.ModuloTema.ModuloItens;
+
 
 namespace FestasInfantis.WinApp.ModuloTema
 {

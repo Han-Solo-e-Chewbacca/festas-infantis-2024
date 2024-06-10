@@ -1,6 +1,7 @@
 using eAgenda.WinApp.Compartilhado;
 using FestasInfantis.WinApp.Compartilhado;
 using FestasInfantis.WinApp.ModuloCliente;
+using FestasInfantis.WinApp.ModuloDeAlugueisDeTemas;
 
 namespace FestasInfantis.WinApp
 {
@@ -11,6 +12,7 @@ namespace FestasInfantis.WinApp
         ContextoDados contexto;
 
         IRepositorioCliente repositorioCliente;
+        IRepositorioAluguel repositorioAluguel;
 
         public static TelaPrincipalForm Instancia { get; private set; }
 
@@ -18,9 +20,13 @@ namespace FestasInfantis.WinApp
         {
             InitializeComponent();
 
-            contexto=new ContextoDados(carregarDados: true);
+            contexto = new ContextoDados(carregarDados: true);
 
             repositorioCliente = new RepositorioClienteEmArquivo(contexto);
+            repositorioAluguel = new RepositorioAluguelEmArquivo(contexto);
+            
+            
+            
             lblTipoCadastro.Text = string.Empty;
             Instancia = this;
         }
@@ -98,6 +104,13 @@ namespace FestasInfantis.WinApp
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             controlador.Excluir();
+        }
+
+        private void alugueisMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorAluguel(repositorioAluguel);
+
+            ConfigurarTelaPrincipal(controlador);
         }
     }
 }
